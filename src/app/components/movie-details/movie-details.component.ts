@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 
 @Component({
