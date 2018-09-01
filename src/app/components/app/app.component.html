@@ -23,4 +23,10 @@
   </form>
 </mat-card>
 
-<movie-details *ngIf="movie" [movie]="movie"></movie-details>
+<mat-card *ngIf="error">
+  <mat-card-title>
+    No results found.
+  </mat-card-title>
+</mat-card>
+
+<movie-details *ngIf="!error && movie" [movie]="movie"></movie-details>

@@ -1,13 +1,13 @@
 export class Movie {
   constructor(
-    plot: string,
-    title: string,
-    actors: string,
-    awards: string,
-    country: string,
-    poster: string,
-    language: string,
-    imdbRating: string,
+    public plot: string,
+    public title: string,
+    public actors: string,
+    public awards: string,
+    public country: string,
+    public poster: string,
+    public language: string,
+    public imdbRating: string,
   ) {
     this.plot = plot;
     this.actors = actors;

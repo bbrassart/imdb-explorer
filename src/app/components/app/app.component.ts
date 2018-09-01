@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImdbApiService } from '../../services/imdb-api.service';
 import { Movie } from '../../models/movie.model';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
@@ -9,7 +9,12 @@ import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  myForm: FormGroup;
+  appName: string;
+  error: boolean;
+  movie: Movie;
+
   constructor(
     private imdbApiService: ImdbApiService,
     private fb: FormBuilder,
@@ -19,9 +24,10 @@ export class AppComponent {
     });
   }
 
-  myForm: FormGroup;
-
-  appName = 'IMDB explorer';
+  ngOnInit() {
+    this.error = false;
+    this.appName = 'IMDB explorer';
+  }
 
   getMovie = (formDirective: FormGroupDirective) => {
     if (this.myForm.invalid) {
@@ -30,29 +36,27 @@ export class AppComponent {
     this.imdbApiService
       .getMovie(this.myForm.value.title)
       .subscribe(data => {
-        const {
-          Plot,
-          Title,
-          Actors,
-          Awards,
-          Country,
-          Poster,
-          Language,
-          imdbRating
-        } = data;
+        if (data['Response'] === 'False') {
+          this.error = true;
+          this.movie = null;
+          formDirective.resetForm();
+          return;
+        }
 
         this.movie = new Movie(
-          Plot,
-          Title,
-          Actors,
-          Awards,
-          Country,
-          Poster,
-          Language,
-          imdbRating
+          data['Plot'],
+          data['Actors'],
+          data['Title'],
+          data['Awards'],
+          data['Country'],
+          data['Poster'],
+          data['Language'],
+          data['imdbRating'],
         );
+
+        this.error = false;
+        formDirective.resetForm();
       });
-    formDirective.resetForm();
-    this.myForm.reset();
+
   }
 }

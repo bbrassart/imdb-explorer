@@ -1,4 +1,4 @@
-<mat-card *ngIf="!!movie.poster">
+<mat-card>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="poster">
       <th mat-header-cell *matHeaderCellDef>Poster</th>
@@ -38,10 +38,4 @@
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
-</mat-card>
-
-<mat-card *ngIf="!movie.poster">
-  <mat-card-title>
-    No results found.
-  </mat-card-title>
 </mat-card>
