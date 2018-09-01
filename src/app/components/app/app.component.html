@@ -1,0 +1,26 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<mat-card>
+  <mat-card-title>
+    Welcome to {{ appName }}!
+  </mat-card-title>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>
+    Type the movie you're looking for
+  </mat-card-title>
+  <form class="example-form"
+        [formGroup]="myForm"
+        #formDirective="ngForm"
+        (ngSubmit)="getMovie(formDirective)">
+    <mat-form-field class="example-full-width">
+      <mat-label>Movie title</mat-label>
+      <input matInput
+             formControlName="title">
+    </mat-form-field>
+    <mat-error *ngIf="myForm.touched && myForm.invalid">Please type a name</mat-error>
+  </form>
+</mat-card>
+
+<movie-details *ngIf="movie" [movie]="movie"></movie-details>
