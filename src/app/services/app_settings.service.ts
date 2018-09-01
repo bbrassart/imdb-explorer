@@ -8,7 +8,7 @@ export class AppSettings {
   ENDPOINT: String;
 
   constructor() {
-    this.ENDPOINT = 'http://www.omdbapi.com/?apikey=950dc688';
+    this.ENDPOINT = 'https://www.omdbapi.com/?apikey=950dc688';
   }
 
   getMainEndpoint() {
