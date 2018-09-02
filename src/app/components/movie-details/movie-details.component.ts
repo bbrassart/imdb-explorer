@@ -11,10 +11,11 @@ import { Movie } from '../../models/movie.model';
 export class MovieDetailsComponent implements OnChanges {
   @Input() movie: Movie;
 
-  dataSource = [];
-  columnsToDisplay = ['poster', 'title', 'plot', 'imdbRating', 'actors', 'country', 'language', 'awards'];
+  dataSource: object[] = [];
+  columnsToDisplay: string[] = [];
 
   ngOnChanges() {
+    this.columnsToDisplay = Object.keys(this.movie);
     this.dataSource = [this.movie];
   }
 }

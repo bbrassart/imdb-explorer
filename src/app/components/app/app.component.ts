@@ -10,23 +10,21 @@ import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular
 })
 
 export class AppComponent implements OnInit {
-  myForm: FormGroup;
-  appName: string;
-  error: boolean;
-  movie: Movie;
-
   constructor(
     private imdbApiService: ImdbApiService,
     private fb: FormBuilder,
-  ) {
-    this.myForm = fb.group({
-      title: [null, Validators.required],
-    });
-  }
+  ) {}
+
+  myForm: FormGroup = this.fb.group({
+    title: [null, Validators.required],
+  });
+
+  appName = 'IMDB explorer';
+  error: boolean;
+  movie: Movie;
 
   ngOnInit() {
     this.error = false;
-    this.appName = 'IMDB explorer';
   }
 
   getMovie = (formDirective: FormGroupDirective) => {
@@ -44,14 +42,14 @@ export class AppComponent implements OnInit {
         }
 
         this.movie = new Movie(
-          data['Plot'],
-          data['Actors'],
-          data['Title'],
-          data['Awards'],
-          data['Country'],
           data['Poster'],
-          data['Language'],
+          data['Title'],
+          data['Plot'],
           data['imdbRating'],
+          data['Actors'],
+          data['Country'],
+          data['Language'],
+          data['Awards'],
         );
 
         this.error = false;

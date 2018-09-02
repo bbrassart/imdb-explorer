@@ -5,11 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class AppSettings {
-  ENDPOINT: String;
-
-  constructor() {
-    this.ENDPOINT = 'https://www.omdbapi.com/?apikey=950dc688';
-  }
+  ENDPOINT = 'https://www.omdbapi.com/?apikey=950dc688';
 
   getMainEndpoint() {
     return this.ENDPOINT;

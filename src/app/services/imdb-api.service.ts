@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ImdbApiService {
-  mainEndpoint: String;
+  mainEndpoint: string;
 
   constructor(
     private appSettings: AppSettings,
